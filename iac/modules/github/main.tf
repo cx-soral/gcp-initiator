@@ -24,3 +24,9 @@ resource "github_actions_secret" "secret_wip_name" {
   secret_name      = "secret_wip_name"
   plaintext_value  = var.secret_wip_name
 }
+
+resource "github_actions_secret" "provider_sa_email" {
+  repository       = var.repository_name
+  secret_name      = "provider_sa_email"
+  plaintext_value  = var.provider_sa_email
+}
