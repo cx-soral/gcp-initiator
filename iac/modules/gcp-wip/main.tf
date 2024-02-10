@@ -50,7 +50,6 @@ resource "google_service_account_iam_binding" "service_account_binding" {
 
 resource "google_project_iam_member" "git_mirroring_sa_binding" {
   project = var.project_id
-  # role    = "roles/source.admin"
-  role    = "roles/owner"
+  role    = "roles/source.admin"
   member  = "serviceAccount:${google_service_account.github_provider_sa.email}"
 }
