@@ -1,5 +1,6 @@
 module "github" {
   source = "../../modules/github"
+  repository_owner = var.repository_owner
   repository_name = var.repository_name
 }
 
