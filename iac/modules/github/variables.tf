@@ -9,3 +9,7 @@ variable "repository_name" {
 variable "secret_wip_name" {
   type = string
 }
+
+variable "provider_sa_email" {
+  type = string
+}
