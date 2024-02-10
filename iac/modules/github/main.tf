@@ -8,7 +8,7 @@ terraform {
 
 resource "github_repository" "app-repository" {
   name        = var.repository_name
-  description = "My awesome codebase"
+  description = "GCP Application: ${var.repository_name}"
 
   visibility = "public"
 
@@ -21,18 +21,18 @@ resource "github_repository" "app-repository" {
 
 resource "github_actions_secret" "project_id" {
   repository       = var.repository_name
-  secret_name      = "project_id"
+  secret_name      = "PROJECT_ID"
   plaintext_value  = var.project_id
 }
 
 resource "github_actions_secret" "secret_wip_name" {
   repository       = var.repository_name
-  secret_name      = "secret_wip_name"
+  secret_name      = "SECRET_WIP_NAME"
   plaintext_value  = var.secret_wip_name
 }
 
 resource "github_actions_secret" "provider_sa_email" {
   repository       = var.repository_name
-  secret_name      = "provider_sa_email"
+  secret_name      = "PROVIDER_SA_EMAIL"
   plaintext_value  = var.provider_sa_email
 }
