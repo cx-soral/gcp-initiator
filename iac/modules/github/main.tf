@@ -19,6 +19,12 @@ resource "github_repository" "app-repository" {
   }
 }
 
+resource "github_actions_secret" "project_id" {
+  repository       = var.repository_name
+  secret_name      = "project_id"
+  plaintext_value  = var.project_id
+}
+
 resource "github_actions_secret" "secret_wip_name" {
   repository       = var.repository_name
   secret_name      = "secret_wip_name"
