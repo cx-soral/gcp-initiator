@@ -5,8 +5,8 @@ resource "google_project_service" "cloudbuild_api" {
 
 resource "google_cloudbuild_trigger" "main_trigger" {
   project = var.project_id
-  name = "main-trigger"
-  description = "Trigger for main branch"
+  name = "${var.repository_name}-main-trigger"
+  description = "Trigger for ${var.repository_name} main branch"
 
   included_files = [
     "**",

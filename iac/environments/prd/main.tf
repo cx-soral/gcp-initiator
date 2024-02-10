@@ -12,6 +12,8 @@ module "gcp-git" {
 module "gcp-wip" {
   source = "../../modules/gcp-wip"
   project_id = var.project_id
+  repository_owner = var.repository_owner
+  repository_name = var.repository_name
 }
 
 module "gcp-cbd" {
