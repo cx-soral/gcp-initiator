@@ -5,3 +5,7 @@ variable "repository_owner" {
 variable "repository_name" {
   type = string
 }
+
+variable "secret_wip_name" {
+  type = string
+}
