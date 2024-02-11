@@ -5,3 +5,13 @@ variable "project_id" {
 variable "repository_name" {
   type = string
 }
+
+variable "branch_name" {
+  type = string
+  default = null
+}
+
+variable "tag_name" {
+  type = string
+  default = null
+}
