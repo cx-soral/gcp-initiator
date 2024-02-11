@@ -13,10 +13,10 @@ ifndef REPO_OWNER
 endif
 
 init:
-    @terraform -chdir=iac/environments/dev init
-    @terraform -chdir=iac/environments/sit init
-    @terraform -chdir=iac/environments/prd init
-    @terraform -chdir=iac/environments/repo init
+	@terraform -chdir=iac/environments/dev init
+	@terraform -chdir=iac/environments/sit init
+	@terraform -chdir=iac/environments/prd init
+	@terraform -chdir=iac/environments/repo init
 
 apply: init check-vars
 	$(foreach PROJECT_ID,$(PROJECT_IDS),\
