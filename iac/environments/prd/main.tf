@@ -15,5 +15,6 @@ module "gcp-cbd" {
   source = "../../modules/gcp-cbd"
   project_id = var.project_id
   repository_name = module.gcp-git.repository_name
+  cloudbuild_filename = "cicd/cloudbuild-tag.yaml"
   tag_name = "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
 }
