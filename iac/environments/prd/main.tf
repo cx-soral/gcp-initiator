@@ -19,6 +19,7 @@ module "gcp-cbd" {
 
 module "github" {
   source = "../../modules/github"
+  count = 0
   project_id = var.project_id
   repository_owner = var.repository_owner
   repository_name = var.repository_name
