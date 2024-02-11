@@ -1,14 +1,8 @@
 .PHONY: init apply
 
 ENV_LIST := dev sit prd
-# Initialize ENV_LIST_JSON with the opening bracket and the first quote
-ENV_LIST_TF := "["
-
-# Use foreach to append each item in quotes followed by a comma
-ENV_LIST_TF += $(foreach item,$(ENV_LIST),"$(item)",)
-
-# Trim the trailing comma and add the closing bracket
-ENV_LIST_TF := $(shell echo '$(ENV_LIST_TF)' | sed 's/,$$/]/')
+ENV_LIST_TF := $(foreach item,$(ENV_LIST),\"$(item)\",)
+ENV_LIST_TF := [$(shell echo '${ENV_LIST_TF}' | sed 's/,$$/]/')
 
 check-vars:
 ifndef PROJECT_PREFIX
