@@ -1,6 +1,9 @@
 .PHONY: init apply
 
 ENV_LIST := dev sit prd
+ENV_LIST_TF := $(foreach item,$(ENV_LIST),"$(item)", )
+ENV_LIST_TF := $(strip $(ENV_LIST_TF))
+ENV_LIST_TF := $(patsubst %,,$(ENV_LIST_TF))
 
 check-vars:
 ifndef PROJECT_PREFIX
@@ -27,3 +30,8 @@ apply: init check-vars
 			-var "project_id=$(PROJECT_PREFIX)$(ENV_NAME)" \
 			-var "repository_name=$(REPO_NAME)" \
 			-var "repository_owner=$(REPO_OWNER)";)
+	@terraform -chdir=iac/environments/repo apply -auto-approve \
+		-var 'project_prefix=$(PROJECT_PREFIX)' \
+		-var 'env_list=$(ENV_LIST_TF)' \
+		-var 'repository_name=$(REPO_NAME)' \
+		-var 'repository_owner=$(REPO_OWNER)'

@@ -1,5 +1,9 @@
-variable "project_id" {
+variable "project_prefix" {
   type = string
+}
+
+variable "env_list" {
+  type = list(string)
 }
 
 variable "repository_owner" {
