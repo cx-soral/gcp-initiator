@@ -15,5 +15,5 @@ module "gcp-cbd" {
   source = "../../modules/gcp-cbd"
   project_id = var.project_id
   repository_name = module.gcp-git.repository_name
-  branch_name = "main"
+  branch_name = "develop"
 }
