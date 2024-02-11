@@ -24,4 +24,8 @@ init:
 	@terraform -chdir=iac/environments/repo init
 
 apply:
-	@echo $(ENV_LIST_TF)
+	@terraform -chdir=iac/environments/repo apply -auto-approve \
+		-var 'project_prefix=$(PROJECT_PREFIX)' \
+		-var 'env_list=$(ENV_LIST_TF)' \
+		-var 'repository_name=$(REPO_NAME)' \
+		-var 'repository_owner=$(REPO_OWNER)'
