@@ -35,16 +35,22 @@ resource "github_actions_secret" "project_id" {
   repository       = var.repository_name
   secret_name      = "PROJECT_ID"
   plaintext_value  = var.project_id
+
+  depends_on = [github_repository.app-repository]
 }
 
 resource "github_actions_secret" "secret_wip_name" {
   repository       = var.repository_name
   secret_name      = "SECRET_WIP_NAME"
   plaintext_value  = data.google_iam_workload_identity_pool_provider.pool_provider.name
+
+  depends_on = [github_repository.app-repository]
 }
 
 resource "github_actions_secret" "provider_sa_email" {
   repository       = var.repository_name
   secret_name      = "PROVIDER_SA_EMAIL"
   plaintext_value  = data.google_service_account.github_provider_sa.email
+
+  depends_on = [github_repository.app-repository]
 }
