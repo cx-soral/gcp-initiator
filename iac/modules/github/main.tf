@@ -24,6 +24,8 @@ resource "github_repository_environment" "environments" {
 
   environment         = each.value
   repository          = var.repository_name
+
+  depends_on = [github_repository.app-repository]
 }
 
 data "google_iam_workload_identity_pool_provider" "pool_provider" {
@@ -50,7 +52,7 @@ resource "github_actions_environment_secret" "project_id" {
   secret_name      = "PROJECT_ID"
   plaintext_value  = "${var.project_prefix}${each.value}"
 
-  depends_on = [github_repository.app-repository]
+  depends_on = [github_repository.app-repository, github_repository_environment.environments]
 }
 
 resource "github_actions_environment_secret" "secret_wip_name" {
@@ -61,7 +63,7 @@ resource "github_actions_environment_secret" "secret_wip_name" {
   secret_name      = "SECRET_WIP_NAME"
   plaintext_value  = data.google_iam_workload_identity_pool_provider.pool_provider[each.key].name
 
-  depends_on = [github_repository.app-repository]
+  depends_on = [github_repository.app-repository, github_repository_environment.environments]
 }
 
 resource "github_actions_environment_secret" "provider_sa_email" {
@@ -72,5 +74,5 @@ resource "github_actions_environment_secret" "provider_sa_email" {
   secret_name      = "PROVIDER_SA_EMAIL"
   plaintext_value  = data.google_service_account.github_provider_sa[each.key].email
 
-  depends_on = [github_repository.app-repository]
+  depends_on = [github_repository.app-repository, github_repository_environment.environments]
 }
