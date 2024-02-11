@@ -2,8 +2,11 @@
 
 
 check-vars:
-ifndef PROJECT_LIST
-	$(error PROJECT_LIST is undefined)
+ifndef PROJECT_PREFIX
+	$(error PROJECT_PREFIX is undefined)
+endif
+ifndef ENV_LIST
+	$(error ENV_LIST is undefined)
 endif
 ifndef REPO_NAME
 	$(error REPO_NAME is undefined)
@@ -13,13 +16,12 @@ ifndef REPO_OWNER
 endif
 
 init:
-	@terraform -chdir=iac/environments/dev init
-	@terraform -chdir=iac/environments/sit init
-	@terraform -chdir=iac/environments/prd init
+	$(foreach ENV_NAME,$(ENV_LIST),\
+		terraform -chdir=iac/environments/$(ENV_NAME) init;)
 	@terraform -chdir=iac/environments/repo init
 
 apply: init check-vars
-	$(foreach PROJECT_ID,$(PROJECT_LIST),\
+	$(foreach ENV_NAME,$(ENV_LIST),\
 		terraform -chdir=iac/environments/repo apply -auto-approve \
 			-var "project_id=$(PROJECT_ID)" \
 			-var "repository_name=$(REPO_NAME)" \
