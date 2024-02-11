@@ -1,8 +1,6 @@
 .PHONY: init apply
 
 ENV_LIST := dev sit prd
-ENV_LIST_TF := $(foreach item,$(ENV_LIST),\"$(item)\",)
-ENV_LIST_TF := [$(shell echo '${ENV_LIST_TF}' | sed 's/,$$/]/')
 ENV_LIST_TF := ["dev", "sit", "prd"]
 
 check-vars:
@@ -25,7 +23,6 @@ init:
 	@terraform -chdir=iac/environments/repo init
 
 apply:
-	@echo $(ENV_LIST_TF)
 	@terraform -chdir=iac/environments/repo apply -auto-approve \
 		-var 'project_prefix=$(PROJECT_PREFIX)' \
 		-var 'env_list=$(ENV_LIST_TF)' \
