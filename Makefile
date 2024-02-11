@@ -3,6 +3,7 @@
 ENV_LIST := dev sit prd
 ENV_LIST_TF := $(foreach item,$(ENV_LIST),\"$(item)\",)
 ENV_LIST_TF := [$(shell echo '${ENV_LIST_TF}' | sed 's/,$$/]/')
+ENV_LIST_TF := ["dev", "sit", "prd"]
 
 check-vars:
 ifndef PROJECT_PREFIX
@@ -27,6 +28,6 @@ apply:
 	@echo $(ENV_LIST_TF)
 	@terraform -chdir=iac/environments/repo apply -auto-approve \
 		-var 'project_prefix=$(PROJECT_PREFIX)' \
-		-var 'env_list=["dev", "sit", "prd"]' \
+		-var 'env_list=$(ENV_LIST_TF)' \
 		-var 'repository_name=$(REPO_NAME)' \
 		-var 'repository_owner=$(REPO_OWNER)'
