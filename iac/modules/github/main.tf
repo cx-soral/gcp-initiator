@@ -7,6 +7,7 @@ terraform {
 }
 
 data "google_iam_workload_identity_pool_provider" "pool_provider" {
+  provider = google-beta
   project = var.project_id
   workload_identity_pool_id          = "github-pool-${var.repository_name}"
   workload_identity_pool_provider_id = "github-provider-${var.repository_name}"
