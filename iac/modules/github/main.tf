@@ -18,3 +18,10 @@ resource "github_repository" "app-repository" {
     include_all_branches = true
   }
 }
+
+resource "github_repository_environment" "environments" {
+  for_each = toset(var.env_list)
+
+  environment         = each.value
+  repository          = var.repository_name
+}
