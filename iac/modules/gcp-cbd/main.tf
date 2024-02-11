@@ -12,7 +12,7 @@ resource "google_cloudbuild_trigger" "main_trigger" {
     "**",
   ]
 
-  filename = "cicd/cloudbuild.yaml"
+  filename = var.cloudbuild_filename
 
   trigger_template {
     project_id  = var.project_id
