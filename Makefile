@@ -22,7 +22,7 @@ init:
 
 apply: init check-vars
 	$(foreach ENV_NAME,$(ENV_LIST),\
-		terraform -chdir=iac/environments/repo apply -auto-approve \
+		terraform -chdir=iac/environments/$(ENV_NAME) apply -auto-approve \
 			-var "project_id=$(PROJECT_PREFIX)$(ENV_NAME)" \
 			-var "repository_name=$(REPO_NAME)" \
 			-var "repository_owner=$(REPO_OWNER)";)
