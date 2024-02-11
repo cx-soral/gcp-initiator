@@ -1,5 +1,6 @@
 .PHONY: init apply
 
+ENV_LIST := dev sit prd
 
 check-vars:
 ifndef PROJECT_PREFIX
