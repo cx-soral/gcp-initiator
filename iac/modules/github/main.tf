@@ -15,7 +15,6 @@ resource "github_repository" "app-repository" {
   template {
     owner                = "cx-soral"
     repository           = "gcp-framework"
-    include_all_branches = true
   }
 }
 
