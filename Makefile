@@ -27,6 +27,6 @@ apply:
 	@echo $(ENV_LIST_TF)
 	@terraform -chdir=iac/environments/repo apply -auto-approve \
 		-var 'project_prefix=$(PROJECT_PREFIX)' \
-		-var 'env_list=$(ENV_LIST_TF)' \
+		-var 'env_list=["dev", "sit", "prd"]' \
 		-var 'repository_name=$(REPO_NAME)' \
 		-var 'repository_owner=$(REPO_OWNER)'
