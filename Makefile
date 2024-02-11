@@ -24,7 +24,7 @@ init:
 	@terraform -chdir=iac/environments/repo init
 
 apply:
-	@echo $(ENV_LIST_TF)
+	@diff <(echo '["dev", "sit", "prd"]') <(echo $(ENV_LIST_TF))
 	@terraform -chdir=iac/environments/repo apply -auto-approve \
 		-var 'project_prefix=$(PROJECT_PREFIX)' \
 		-var 'env_list=["dev", "sit", "prd"]' \
