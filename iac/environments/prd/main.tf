@@ -16,11 +16,3 @@ module "gcp-cbd" {
   project_id = var.project_id
   repository_name = module.gcp-git.repository_name
 }
-
-module "github" {
-  source = "../../modules/github"
-  count = 0
-  project_id = var.project_id
-  repository_owner = var.repository_owner
-  repository_name = var.repository_name
-}
