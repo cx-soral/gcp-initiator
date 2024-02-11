@@ -1,9 +1,8 @@
 .PHONY: init apply
 
 ENV_LIST := dev sit prd
-ENV_LIST_TF := $(foreach item,$(ENV_LIST),"$(item)", )
-ENV_LIST_TF := $(strip $(ENV_LIST_TF))
-ENV_LIST_TF := $(patsubst %,,$(ENV_LIST_TF))
+ENV_LIST_TF := $(foreach item,$(ENV_LIST),"$(item)",)
+ENV_LIST_TF := $(patsubst %,,%,$(ENV_LIST_TF))
 
 check-vars:
 ifndef PROJECT_PREFIX
