@@ -5,6 +5,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="gcp-framework" />
-    <orderEntry type="module" module-name="application-01" />
+    <orderEntry type="module" module-name="application-02" />
   </component>
 </module>
