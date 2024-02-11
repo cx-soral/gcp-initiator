@@ -6,6 +6,17 @@ terraform {
   }
 }
 
+data "google_iam_workload_identity_pool_provider" "pool_provider" {
+  project = var.project_id
+  workload_identity_pool_id          = "github-pool-${var.repository_name}"
+  workload_identity_pool_provider_id = "github-provider-${var.repository_name}"
+}
+
+data "google_service_account" "github_provider_sa" {
+  project      = var.project_id
+  account_id   = "wip-${var.repository_name}-sa"
+}
+
 resource "github_repository" "app-repository" {
   name        = var.repository_name
   description = "GCP Application: ${var.repository_name}"
@@ -28,11 +39,11 @@ resource "github_actions_secret" "project_id" {
 resource "github_actions_secret" "secret_wip_name" {
   repository       = var.repository_name
   secret_name      = "SECRET_WIP_NAME"
-  plaintext_value  = var.secret_wip_name
+  plaintext_value  = data.google_iam_workload_identity_pool_provider.pool_provider.name
 }
 
 resource "github_actions_secret" "provider_sa_email" {
   repository       = var.repository_name
   secret_name      = "PROVIDER_SA_EMAIL"
-  plaintext_value  = var.provider_sa_email
+  plaintext_value  = data.google_service_account.github_provider_sa.email
 }
