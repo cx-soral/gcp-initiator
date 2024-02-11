@@ -1,7 +1,7 @@
 .PHONY: init apply
 
 ENV_LIST := dev sit prd
-ENV_LIST_TF := $(shell echo '["$(subst $(space),\",\"$(strip $(ENV_LIST)))"]')
+ENV_LIST_TF := $(shell echo '[ "$(join $(ENV_LIST), "\", \"")" ]')
 
 check-vars:
 ifndef PROJECT_PREFIX
