@@ -17,10 +17,15 @@ ifndef REPO_OWNER
 	$(error REPO_OWNER is undefined)
 endif
 
+migrate:
+	$(foreach ENV_NAME,$(ENV_LIST),\
+		terraform -chdir=iac/environments/$(ENV_NAME) init -backend-config "bucket=$(PROJECT_PREFIX)-tf-states" -backend-config "prefix=terraform/$(PROJECT_PREFIX)$(ENV_NAME)/state";)
+	@terraform -chdir=iac/environments/repo init -backend-config "bucket=$(PROJECT_PREFIX)-tf-states" -backend-config "prefix=terraform/$(PROJECT_PREFIX)repo/state"
+
 init:
 	$(foreach ENV_NAME,$(ENV_LIST),\
 		terraform -chdir=iac/environments/$(ENV_NAME) init -backend-config "bucket=$(PROJECT_PREFIX)-tf-states" -backend-config "prefix=terraform/$(PROJECT_PREFIX)$(ENV_NAME)/state";)
-	@terraform -chdir=iac/environments/repo init
+	@terraform -chdir=iac/environments/repo init -backend-config "bucket=$(PROJECT_PREFIX)-tf-states" -backend-config "prefix=terraform/$(PROJECT_PREFIX)repo/state"
 
 apply: init check-vars
 	$(foreach ENV_NAME,$(ENV_LIST),\
