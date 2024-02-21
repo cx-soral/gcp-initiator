@@ -14,7 +14,7 @@ resource "github_repository" "app-repository" {
 
   template {
     owner                = "cx-soral"
-    repository           = "gcp-framework"
+    repository           = "gcp-template"
   }
 }
 

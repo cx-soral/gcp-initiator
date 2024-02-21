@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../gcp-framework/.idea/gcp-framework.iml" filepath="$PROJECT_DIR$/../gcp-framework/.idea/gcp-framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gcp-initiator.iml" filepath="$PROJECT_DIR$/.idea/gcp-initiator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gcp-module/.idea/gcp-module.iml" filepath="$PROJECT_DIR$/../gcp-module/.idea/gcp-module.iml" />
     </modules>
   </component>
 </project>
